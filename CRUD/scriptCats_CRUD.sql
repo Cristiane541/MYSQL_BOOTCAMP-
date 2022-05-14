@@ -1,0 +1,232 @@
+CREATE DATABASE cat_app;
+USE cat_app;
+
+CREATE TABLE cats(
+	name VARCHAR(100),
+    age INT  
+);
+
+SHOW TABLES;
+SHOW COLUMNS FROM cats;
+DESC cats;
+
+#deleting a table
+DROP TABLE cats;
+SHOW TABLES;
+
+SELECT database();
+
+CREATE TABLE pastries(
+	name VARCHAR(50),
+    quantity INT
+);
+
+SHOW TABLES;
+DESC pastries;
+DROP TABLE pastries;
+
+CREATE TABLE cats(
+	name VARCHAR(100),
+    age INT  
+);
+
+INSERT INTO cats(name, age)
+	   VALUES('Jetson', 7);
+	
+INSERT INTO cats(name, age)
+	   VALUES('Byan', 4);
+
+SELECT * FROM cats;
+
+#adding multiple dates
+INSERT INTO cats(name, age)
+VALUES ('Pinuts', 2),
+	   ('Jelly', 4),
+       ('Raspy', 8);
+       
+SELECT * FROM cats;
+
+#creating a table called people
+CREATE TABLE people(
+	first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    age INT
+);
+
+INSERT INTO people(first_name, last_name, age)
+VALUES('Tina','Belcher', 13);
+
+SELECT * FROM PEOPLE;
+
+#inserting multiple dates at table people
+INSERT INTO PEOPLE(first_name, last_name, age)
+VALUES('Linda', 'Belcher', 45),
+	  ('Philip','Frond', 38),
+      ('Calvin','Fischoedeer', 70);
+      
+SELECT * FROM PEOPLE;
+DROP TABLE PEOPLE;
+SHOW WARNINGS;
+
+INSERT INTO CATS(name)
+VALUES('Alabama');
+
+#inserting null values
+INSERT INTO CATS() VALUES();
+SELECT * FROM CATS;
+
+#adding the null parameter 
+CREATE TABLE CATS2(
+	name VARCHAR(100) NOT NULL,
+    age INT NOT NULL
+);
+
+DESC CATS2;
+INSERT INTO CATS2(NAME) VALUES('Texas');
+SHOW WARNINGS;
+
+SELECT * FROM CATS2;
+
+#setting default values into a table
+CREATE TABLE CATS3(
+	NAME VARCHAR(20) DEFAULT 'NO NAME PROVIDED',
+    AGE INT DEFAULT 99
+);
+DESC CATS3;
+
+INSERT INTO CATS3(AGE) VALUES(13);
+SELECT * FROM CATS3;
+
+CREATE TABLE CATS4(
+	NAME_ VARCHAR(20) NOT NULL,
+    AGE INT NOT NULL
+);
+
+INSERT INTO CATS4(NAME_, AGE) VALUES('CALI', 4);
+SHOW WARNINGS;
+
+CREATE TABLE UNIQUE_CATS(
+	CAT_ID INT NOT NULL,
+    NAME_ VARCHAR(20),
+    AGE INT,
+    PRIMARY KEY(CAT_ID)
+);
+
+DESC UNIQUE_CATS;
+
+INSERT INTO UNIQUE_CATS(CAT_ID, NAME_, AGE)
+VALUES(2,'CAT 1', 2);
+SELECT * FROM UNIQUE_CATS;
+
+CREATE TABLE UNIQUE_CATS2(
+	CAT_ID INT NOT NULL auto_increment,
+	CAT_NAME VARCHAR(30) NOT NULL,
+    AGE INT NOT NULL,
+    PRIMARY KEY(CAT_ID)
+);
+
+INSERT INTO UNIQUE_CATS2(CAT_NAME, AGE)
+VALUES('GATIM', 1);
+SELECT * FROM UNIQUE_CATS2;
+
+INSERT INTO UNIQUE_CATS2(CAT_NAME, AGE)
+VALUES	('GATIM', 1),
+		('GATIM2', 2),
+		('GATIM3', 3),
+		('GATIM4', 4);
+SELECT * FROM UNIQUE_CATS2;
+
+#Creating an employee table
+CREATE TABLE EMPLOYEES(
+	ID INT NOT NULL AUTO_INCREMENT   PRIMARY KEY,
+    LAST_NAME VARCHAR(150) NOT NULL,
+    FIRST_NAME VARCHAR(150) NOT NULL,
+    MIDDLE_NAME VARCHAR(150),
+    AGE INT NOT NULL,
+    CURRENT_STATUS VARCHAR(200) NOT NULL DEFAULT 'EMPLOYED' 
+);
+DROP TABLE EMPLOYEES;
+SHOW WARNINGS;
+
+SELECT * FROM EMPLOYEES;
+DESC EMPLOYEES;
+
+INSERT INTO EMPLOYEES(FIRST_NAME,LAST_NAME, AGE)
+VALUES('First Name','Middle', 44);
+
+
+INSERT INTO EMPLOYEES(FIRST_NAME,LAST_NAME, AGE)
+VALUES('Jackson', 'Five',50);
+
+SELECT * FROM EMPLOYEES;
+
+#UPDATING EMPLOYEES' TABLE
+UPDATE EMPLOYEES
+SET FIRST_NAME = 'Jack'
+WHERE ID = 1;
+
+DROP TABLE CATS;
+
+CREATE TABLE CATS(
+	CAT_ID INT NOT NULL AUTO_INCREMENT,
+    NAME_ VARCHAR(100),
+    BREED VARCHAR(100),
+    AGE INT,
+    PRIMARY KEY (CAT_ID)
+);
+
+INSERT INTO CATS(NAME_, BREED, AGE)
+VALUES('Doli','Meaw',2),
+		('Frog','Meaw',5),
+        ('Mini','Meaw',7),
+        ('Shor','Meaw',8);
+        
+#retrieving dates from db
+SELECT * FROM CATS;
+
+#specifying the columns
+SELECT NAME_, AGE FROM CATS;
+
+#specifying a condition at where section with math operators
+SELECT * FROM CATS WHERE AGE = 7;
+SELECT * FROM CATS WHERE AGE < 5;
+SELECT * FROM CATS WHERE CAT_ID = AGE;
+
+#using alias
+SELECT NAME_ AS 'NOME DO GATO' FROM CATS;
+DESC CATS;
+
+#Updating a row
+UPDATE CATS 
+SET BREED = 'Shorthair'
+WHERE CAT_ID = 1;
+
+UPDATE CATS C
+SET AGE=5
+WHERE C.NAME_ ='Doli' 
+AND CAT_ID = 1;
+
+SELECT * FROM CATS;
+
+UPDATE CATS
+SET BREED = 'Yellow'
+WHERE NAME_ = 'SHOR'
+AND CAT_ID = 4;
+
+SELECT * FROM CATS;
+
+#Deleting operation
+DELETE FROM CATS C
+WHERE C.CAT_ID = 5;
+SHOW WARNINGS;
+
+#Deleting all registers from cats' table
+DELETE FROM CATS;
+
+
+
+
+
+
+
+
